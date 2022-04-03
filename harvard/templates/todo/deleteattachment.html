@@ -1,0 +1,27 @@
+{% extends 'todo/base.html' %}
+
+<title>{% block title %}Delete Attachment{% endblock %}</title>
+
+
+{% block content %}
+
+<br><br>
+<table class="table">
+<tr><td><div class="container-fluid text-center" style="background-color: #FFD700">
+<thread class="thread text-center text-md-center fw-bold fs-2">DELETE YOUR ATTACHMENT</thread></td></tr>
+
+<table class="table">
+<tbody>
+    <tr>
+    <td>
+<form class="d-flex" method="POST" role="form"> {% csrf_token %}
+        <td><br>Are you sure you want to delete "{{ object.name }}"?</td>
+        <tr><td><br><br><input class="form-control me-2" style="background-color: #FFD700" type="submit" value="Confirm" href="{% url 'todo:attachments' %}"></td></tr>
+        </form>
+        </td>   
+ </tr>
+ </tbody>
+ </div>
+ </table>
+ </table>
+{% endblock %}
