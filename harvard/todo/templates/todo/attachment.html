@@ -1,0 +1,52 @@
+{% extends 'todo/base.html' %}
+
+<title>{% block title %}Attachment{% endblock %}</title>
+
+{% block content %}
+
+
+<table class="table">
+<div class="container-fluid bg-warning text-center">
+<thread class="thread text-center text-md-center fw-bold fs-2">YOUR ATTACHMENT</thread>
+</div>
+<br><br>
+
+<div class="container-fluid bg-warning text-center">
+<thread class="thread text-center text-md-center fw-bold fs-2">From List: <a href="{% url 'todo:task' pk=object.id %}">{{ object.task.title }}</a></thread>
+</div>
+<br></br>
+<div class="container-fluid bg-warning text-center">
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="{% url 'todo:attachment' pk=object.id %}">{{ object.file }}</a>, Attachment ID: {{ object.id }} <br><p class="fw-light text-center fs-5"><span class="glyphicon glyphicon-calendar"> Date: {{ object.timestamp }}</span></p></thread></div>
+<br>
+<div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3">{{ object.note  }}</div>
+<br>
+
+<tr>
+
+<td>  
+<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:editattachment' pk=object.id %}">Edit</a></button>
+<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:deleteattachment' pk=object.id %}"> Delete</a></button>
+</td>
+</tr>
+<br><br>
+
+<div class="container-fluid bg-warning text-center">
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="{% url 'todo:attachments' %}">All Attachments</a></thread>
+</div>
+<br><br>
+<tr>   
+{% for attachment in object.attachment_set.all %}
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border">{{ attachment.file }} </a></p><br><p class="fw-light text-justified"> Task ID: {{ attachment.id }}</p>
+</td>
+
+<td>  
+<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:editattachment' pk=object.id %}">Edit</a></button>
+<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:deleteattachment' pk=object.id %}"> Delete</a></button>
+</td>
+{% endfor %}
+
+</tr>
+
+
+</table>
+{% endblock %}
