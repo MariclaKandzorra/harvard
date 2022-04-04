@@ -1,0 +1,78 @@
+{% extends 'todo/base.html' %}
+
+
+<title>{% block title %}Task List{% endblock %}</title>
+
+{% block content %}
+<table class="table">
+<div class="container-fluid text-center" style="background-color: #FFD700">
+<thread class="thread text-center text-md-center fw-bold fs-2">YOUR TASK LIST</thread>
+</div>
+<br><br>
+{% if object.completed %} 
+<div class="container-fluid text-center" style="background-color: #FFD700">
+<thread class="thread text-center text-md-center fw-bold fs-2">From List: <a href="{% url 'todo:tasklists' %}">{{ object.task_list.name }}</a></thread>
+</div>
+<br><br>
+<div class="container-fluid text-center" style="background-color: #FFD700"><s>
+<thread class="thread text-center text-md-center fw-bold fs-2">{{ object.name }} <br><p class="fw-light text-center fs-5">List ID: {{ object.id }} || <span class="glyphicon glyphicon-calendar"></s><s> Created on: {{ object.date }}</span></p></s></thread></div>
+<br>
+<div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3"><s>{{ object.note  }}</div></s>
+<br>
+{% else %}    
+
+<div class="container-fluid text-center" style="background-color: #FFD700">
+<thread class="thread text-center text-md-center fw-bold fs-2">From List: <a href="{% url 'todo:tasklists' %}">{{ object.task_list.name }}</a></thread>
+</div>
+<br><br>
+<div class="container-fluid text-center" style="background-color: #FFD700">
+<thread class="thread text-center text-md-center fw-bold fs-2">{{ object.name }} <br><p class="fw-light text-center fs-5">List ID: {{ object.id }} || <span class="glyphicon glyphicon-calendar"> Created on: {{ object.date }}</span></p></thread></div>
+<br>
+<div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3">{{ object.note  }}</div>
+<br>
+{% endif %}
+
+<tr> <td><br>
+<ul class="nav justify-content-end">
+<li class="nav-item"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700; margin-right: 10px"><a href="{% url 'todo:addtask' %}">+Add New Task</a></button></li>
+<br><br>
+<li class="nav-item"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700; margin-right: 10px"><a href="{% url 'todo:editlist' pk=object.id %}">Edit</a></button></li>
+
+<li class="nav-item"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700; margin-right: 10px"><a href="{% url 'todo:deletelist' pk=object.id %}"> Delete</a></button></li>
+</ul></td></tr>    
+
+</tr>    
+
+</table>
+
+<table class="table">
+<div class="container-fluid text-center" style="background-color: #FFD700">
+<thread class="thread text-center text-md-center fw-bold fs-2">YOUR TASKS</thread>
+</div>
+<br>
+<div class="container-fluid text-center">
+{% for task in object_list %}    
+{% if task.completed %}      
+<tr class= "alert alert-secondary">  
+<td> <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>           
+<td class="text-center"><s><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:task' pk=task.id %}">{{ task.title }}</a> </p><br><p class="fw-light text-justified"> from List: {{ task.task_list  }} | | Task ID: {{ task.id }} | | Priority: {{ task.priority }} | | Status: {{ task.status }} | | Due Date: {{ task.due_date }} | | Created on: {{ task.created_date }}</p></s></td>   
+<td>  <button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:edittask' pk=task.id %}">Restore</a></button></td>
+</tr>    
+{% else %}    
+
+<tr>
+<td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>          
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:task' pk=task.id %}">{{ task.title }} </a></p><br><p class="fw-light text-justified"> from List: {{ task.task_list  }} | | Task ID: {{ task.id }} | | Priority: {{ task.priority }} | | <br>Status: {{ task.status }} | | Due Date: {{ task.due_date }} | | Created on: {{ task.created_date }}</p>
+</td>
+<td>  
+<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:edittask' pk=task.id %}">Edit</a></button>
+<br><br>
+<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:deletetask' pk=task.id %}"> Delete</a></button>
+</td>
+</tr>    
+{% endif %}
+{% endfor %}
+</div>
+</tr>    
+</table>
+{% endblock %}
