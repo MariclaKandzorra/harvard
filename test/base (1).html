@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   <!-- Required meta tags -->
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--  SCIPTS -->
+<!--  jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Moment -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--  bootstrap datetimepicker jQuery-provider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6.0.0-alpha17/js/jQuery-provider.js" integrity="sha512-ceV7/KDGcRslqt8zfE3dGYccnxqVD8zb/g1ypC5qs8FPab/uL2yaXGaim6kmiVDDZDMEaDnqCdxQAlCIa3wJQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- bootstrap datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--  CSS -->
+<!-- bootstrap.min -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- bootstrap datepicker-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6.0.0-alpha17/css/tempus-dominus.css" integrity="sha512-nYyjqNXfY5IWOHku56FIiRntoIbMTDH//ZKcmW6KE4uTPvnLtKdz/UcwfluGSaDc0ALkuQbNUYngjDtQKMsN7Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- bootstrap datetimepicker-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-timepicker-addon.js"></script>
+<script src="https://rawgithub.com/trentrichardson/jQuery-Timepicker-Addon/master/jquery-ui-sliderAccess.js"></script>
+<!-- bootstrap icons -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="datetimepicker"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+<!-- BACKGROUND STYLE -->
+<style>
+body {
+  background: url('https://images.unsplash.com/photo-1589278560468-2f9bbaf07e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1145&q=80 ') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+</style>
+
+<!-- NAVBAR STYLE -->
+<style>@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+.header_img {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.header_img img {
+    width: 40px
+}
+
+.nav_logo,
+.nav_link {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    column-gap: 1rem;
+    padding: .5rem 0 .5rem 1.5rem
+}
+
+.nav_logo {
+    margin-bottom: 2rem
+}
+
+.nav_logo-icon {
+    font-size: 1.25rem;
+    color: var(--white-color)
+}
+
+.nav_logo-name {
+    color: var(--white-color);
+    font-weight: 700
+}
+
+.nav_link {
+    position: relative;
+    color: var(--first-color-light);
+    margin-bottom: 1.5rem;
+    transition: .3s
+}
+
+.nav_link:hover {
+    color: var(--white-color)
+}
+
+.nav_icon {
+    font-size: 1.25rem
+}
+</style>
+
+  <title>{% block title %}Create your daily Tasklis!{% endblock %}</title>
+  </head>
+
+
+<body>  
+
+<div
+  class="bg-image"
+  style= "background-image: url('https://images.unsplash.com/photo-1589278560468-2f9bbaf07e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="mask" style="background-color: rgba(51, 220, 238, 0.6);">
+
+
+
+
+
+<!-- NAVBAR -->
+<div class="container text">
+    <a class="navbar-brand link-info text-white fw-bold" href="#">MBOSS.US</a>
+      <form class="d-flex" method="POST" role="form">
+        {% csrf_token %}
+        <input class="form-control me-2 text-info" placeholder="Task to do" type="input" value="Prototype Development" name= "item">
+        <button type="submit" name="button" class="btn btn-outline-succes btn-info">Add</button>
+      </form>
+       <div class="header_img"> <img src="" alt=""> </div>
+    <button class="navbar-toggler bg-light btn-info text-info" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon icon-info text-white"></span>
+    </button>
+    <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+    <br><br>
+<!--  Accordion -->
+  <div class="accordion bg-info" id="accordionExample">
+  <div class="accordion-item bg-info">
+    <h2 class="accordion-header text-info" id="headingOne">
+      <button class="accordion-button active" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <a class="link-info" href="#"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">DASHBOARD</span> </a> </button>
+    </h2>
+    <div id="collapseOne bg-image" class="accordion-collapse collapse show " aria-labelledby="headingOne" data-bs-parent="#accordionExample" style= "background-image: url('https://images.unsplash.com/photo-1589278560468-2f9bbaf07e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="mask" style="background-color: rgba(51, 220, 238, 0.6);">
+      <div class="accordion-body">
+        <li class="active">
+        <ul>
+                <ul class="submenu">
+                <li><a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a> </li>
+                <li><a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a> </li>
+                <li><a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a> </li>
+                <li><a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a> </li>
+                <li><a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a> </li>
+                </ul>     
+           </div>    
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item bg-info">
+    <h2 class="accordion-header text-info" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <a class="link-info" href="#"><i class='bi bi-app'></i> <span class="nav_name">GTD-TASKLIST-WEBAPP</span> </a></button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style= "background-image: url('https://images.unsplash.com/photo-1589278560468-2f9bbaf07e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="mask" style="background-color: rgba(51, 220, 238, 0.6);">
+      <div class="accordion-body">
+        <li class="active">
+        <ul>
+         <ul class="submenu">
+          <li><a class="nav_link link-info" href="{% url 'todo:tasklists' %}"><i class='bx bx-list-ul'></i> <span class="nav_name">All Task Lists</span> </a></li>
+        <li>
+          <a class="nav_link link-info" href="{% url 'todo:tasks' %}"><i class='bx bx-task'></i> <span class="nav_name">All Tasks</span> </a></li>
+        <li>
+          <a class="nav_link link-info" href="{% url 'todo:tasks' %}"><i class='bi-card-list'></i> <span class="nav_name">List</span> </a></li>
+        <li>
+          <a class="nav_link link-info" href="{% url 'todo:about' %}"><i class='bx bx-edit'></i> <span class="nav_name">Task</span> </a></li>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item bg-info">
+    <h2 class="accordion-header text-info" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+         <a class="link-info" href="#"><i class='bx bx-home'></i> <span class="nav_name">HOME</span> </a></button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style= "background-image: url('https://images.unsplash.com/photo-1589278560468-2f9bbaf07e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="mask" style="background-color: rgba(51, 220, 238, 0.6);">
+      <div class="accordion-body">
+      <li class="active">
+        <ul>
+         <ul class="submenu">
+          <li><a class="nav_link link-info" href="{% url 'todo:tasklists' %}"><i class='bi-person-heart'></i> <span class="nav_name">Your Account</span> </a></li>
+        <li>
+          <a class="nav_link link-info" href="{% url 'todo:tasks' %}"><i class='bx bx-task'></i> <span class="nav_name">Settings</span> </a></li>
+          <li>
+          <a class="nav_link link-info" href="{% url 'todo:tasks' %}"><i class='bi-people-fill'></i> <span class="nav_name">CatchUp</span> </a></li>
+        <li>
+          <a class="nav_link link-info" href="{% url 'todo:about' %}"><i class='bx bx-edit'></i> <span class="nav_name">The Story.</span> </a></li>
+      </div>
+     </div>
+    </div>
+  </div>
+  </div>
+  <!--  END Accordion -->
+  
+  <li><a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a></li>
+   <!--  Carousel -->
+  <div class="d-flex d-flex justify-content-start align-items-stretch">
+<div class="p-2 bg-info justify-content-center flex-fill">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+  
+    <div class="carousel-item active">
+      <a class="nav-link active" aria-current="page" href="#">Active
+    <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">card's content.</p></a>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+    </div>
+    
+    <div class="carousel-item">
+      <a class="nav-link active" aria-current="page" href="#">Active
+    <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">card's content.</p></a>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+    </div>
+    
+    <div class="carousel-item">
+     <a class="nav-link active" aria-current="page" href="#">Active
+    <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">card's content.</p></a>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+    </div>
+    
+  </div>
+</div>
+</div>
+ <!--  END Carousel -->
+ 
+  <!-- eMail Form-->
+<div class="p-2 bg-info justify-content-center flex-fill">
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div><br>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea><br>
+  <a href="#" class="btn btn-primary">Send</a>
+</div>
+</div>
+</div>
+ <!--  END eMailForm -->
+
+        
+        <li class="nav-item dropdown-info">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item link-info" href="{% url 'todo:tasklists' %}">Add Task List</a></li>
+            <li><a class="dropdown-item link-info" href="{% url 'todo:tasks' %}">Add Task</a></li>
+            <li><hr class="dropdown-divider"></li>
+          <li><button class="bg-warning"><a class="link-info"> <span class="glyphicon glyphicon-user" href="{% url 'todo:tasklists' %}"><i class='bx bx-log-in'></i> <span class="nav_name">_Sign in</button>
+        </span> </a></li>
+          </ul>
+        </li>
+    </div>
+  </div>
+</nav>
+ </div>             
+    
+    <!--Container Main start-->
+   
+    
+<div class="container">
+  <div class="card border-0 shadow my-5 ">
+  <!-- Background image -->
+<div
+  class="bg-image"
+  style="background-image: url('https://images.unsplash.com/photo-1558276561-95e31d860c4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="mask" style="background-color: rgba(51, 220, 238, 0.6);">
+    <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="card-body p-5">
+    <h1 class="text-light fw-bold">No distraction or cluttering</h1>
+    <p class="lead text-light font-weight-bold">Scroll down...</p>
+<!-- ADD TASK BOX-->
+<br><br>   
+<div class="container-fluid" style="background-color: #FFD700">
+<table class="table">
+<tbody>
+    <tr>
+    <td>
+<form class="d-flex" method="POST" role="form">
+        {% csrf_token %}
+        <input class="form-control me-2" placeholder="Task to do" type="input" value="Prototype  Development" name= "name"><!-- Task input -->
+        <td> <div class="form-group"> <!-- Date input -->
+        <input class="form-control" id="datetimepicker" name="datetimepicker" placeholder="{{ Task.created_date }}" value="{{ Task.created_date }}" type="text"/>
+   </td>
+<td class="text-center">      
+<select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"> 
+<option selected>Time</option>    
+{% for time in time %}
+<option>{{ time }}</option>    
+{% endfor %}
+</select>
+</td>
+<td class="text-center">      
+<select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"> 
+<option selected>Prior</option>    
+{% for task in object_list %}
+<option>{{ task.priority }}</option>    
+{% endfor %}
+</select>
+</td>
+<td class="text-center">
+<select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">   
+<option selected>Status</option>    
+{% for task in object_list %}
+<option>{{ task.status }}</option>    
+{% endfor %}    
+</select></td>
+<td>
+<button type="submit" name"button" class="btn btn-info bt-lg">Add</button> </td>
+</form>
+</div>     
+ </tr>
+ </tbody>
+ </table>
+ </div>    
+ 
+ <!-- TITLE -->
+<div class="container">
+<a class="link-info alert-warning fw-bold" href="{% url 'todo:editlist' %}">+ New TaskList</a>
+ </div>
+
+<!-- MASSAGE BOX -->
+{% if messages %}
+    {% for messages in messages %}
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+         <p> <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"> <use xlink:href="#check-circle-fill"/>
+                 <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/> 
+                 </symbol>
+           </svg>
+       <div class="text-end">
+       {{ messages }}
+       </div></p><p></p>
+       <button type="button" class="btn-close position-absolute top-0 start-110 translate-middle" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+
+
+
+
+<!-- CONTENT -->
+    {% block content %}
+    
+    {% endblock %}
+    
+    </div>
+  </div>
+</div>
+ 
+    
+ <!-- FOOTER -->
+    <footer class= "page-footer font-small pt-4" style= "background-image: url('https://images.unsplash.com/photo-1589278560468-2f9bbaf07e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">    
+    <br><br>
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-between p-4 text-white bg-info">
+      <!-- Left -->
+      <div class="me-5">
+        <span>CATCH UP!:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="text-white me-4">
+          <i class="bi-facebook-f"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="bi-envelope-paper-heart"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="bi-twitter"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="bi-google"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="bi-instagram"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="bi-linkedin"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="bi-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+    <br><br>
+  <div class="collapse text-white" id="navbarToggleExternalContent">
+  <div class="bg-info text-white p-4">
+    <h5 class="text-white h4">MBOSS.US</h5>
+    <span class="text-muted">STAY PRODUCTIVE</span>
+   <div class="container p-4">
+      <!--Grid row-->
+      <div class="row mt-4">
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-4">About company</h5>
+
+          <p>
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+            voluptatum deleniti atque corrupti.
+          </p>
+
+          <p>
+            Blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas
+            molestias.
+          </p>
+
+          <div class="mt-4">
+            <!-- Facebook -->
+            <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-facebook-f"></i></a>
+            <!-- Dribbble -->
+            <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-dribbble"></i></a>
+            <!-- Twitter -->
+            <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-twitter"></i></a>
+            <!-- Google + -->
+            <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-google-plus-g"></i></a>
+            <!-- Linkedin -->
+          </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-4 pb-1">Search something</h5>
+
+          <div class="form-outline form-white mb-4">
+            <input type="text" id="formControlLg" class="form-control form-control-lg">
+            <label class="form-label" for="formControlLg" style="margin-left: 0px;">Search</label>
+          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 48.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+          <ul class="fa-ul" style="margin-left: 1.65em;">
+            <li class="mb-3">
+              <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">New York, NY 10012, US</span>
+            </li>
+            <li class="mb-3">
+              <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">info@example.com</span>
+            </li>
+            <li class="mb-3">
+              <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">+ 01 234 567 88</span>
+            </li>
+            <li class="mb-3">
+              <span class="fa-li"><i class="fas fa-print"></i></span><span class="ms-2">+ 01 234 567 89</span>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-4">Opening hours</h5>
+
+          <table class="table text-center text-white">
+            <tbody class="font-weight-normal">
+              <tr>
+                <td>Mon - Thu:</td>
+                <td>8.30am - 19.30</td>
+              </tr>
+              <tr>
+                <td>Fri - Sat:</td>
+                <td>10.30am - 15.30</td>
+              </tr>
+              <tr>
+                <td>Sunday:</td>
+                <td>10.30am - 15.30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    
+  </div>
+</div>
+<nav class="navbar navbar-light bg-info text-white">
+  <div class="container-fluid">
+    <button class="navbar-toggler bg-light text-info" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+<!-- Copyright -->
+<div class="footer-copyright text-center py-3" style= "background-image: url('https://images.unsplash.com/photo-1589278560468-2f9bbaf07e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+ <p  class="text-info">©2022, February Copyright: <a href="#!">Maricla Kandzorra Martelli</a>, Frankfurt am Main</p>
+ </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+    
+    </footer>
+    </div>
+    </div>
+  </body>
+   
+</html>
