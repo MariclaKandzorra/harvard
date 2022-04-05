@@ -1,0 +1,21 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[submodule]
+	active = .
+[remote "origin"]
+	url = https://github.com/MariclaKandzorra/harvard.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "mastery"]
+	remote = origin
+	merge = refs/heads/mastery
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "github"]
+	url = https://github.com/MariclaKandzorra/harvard
+	fetch = +refs/heads/*:refs/remotes/github/*

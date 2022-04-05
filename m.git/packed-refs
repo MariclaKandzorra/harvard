@@ -1,0 +1,4 @@
+# pack-refs with: peeled fully-peeled sorted 
+3a86f9469f5e28fff338c06c88881b8877d34577 refs/remotes/origin/circleci-project-setup
+f6f14a917e8b7234dd7f5f7352fc031ca423fa8b refs/remotes/origin/master
+4f4125beb3bf5f4b605a24c7c64fb4ea2916879a refs/remotes/origin/mastery
