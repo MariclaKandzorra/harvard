@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,10 +26,10 @@ SECRET_KEY = 'django-insecure-l471#(8ojbxj(vy+fedyksz@t#@1f49stljcger%@#bob3!izu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-#[
-#'.localhost', '127.0.0.1', '[::1]'
-#]
+ALLOWED_HOSTS = [
+       '.localhost', '127.0.0.1', '[::1]', 
+       'harvard-todo.herokuapp.com',
+]
 
 
 # Application definition
@@ -79,8 +80,12 @@ WSGI_APPLICATION = 'harvard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': BASE_DIR / 'd4380feabkhd2t',
+        'USER': 'slmqijaebgbgnt'
+        'PASSWORD': '2c542c3e2fcdbac418efaeed07723c3727ad4abbb076f2df574bef10f16cb902'
+        'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com'
+        'PORT': '5432'         
     }
 }
 
@@ -128,6 +133,8 @@ STATIC_URL = '/static/'
 STATIC_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static'),
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
