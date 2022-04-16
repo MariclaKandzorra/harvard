@@ -10,10 +10,16 @@
 </div>
 <br>
 {% for attachment in object_list %}    
-<tr>   
-<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border">{{ attachment.file_name }} </a></p><br>
+<tr>  
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:attachment' pk=attachment.id %}">{{ attachment.file_name }} </a></p><p class="fw-light text-justified alert-secondary"><br> From Task: {{ attachment.task }} | | Created on: {{ attachment.timestamp }}<br></p>
 <p class="fw-light text-justified"> Task ID: {{ attachment.id }}</p>
 </td>
+<td>  
+<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:editattachment' pk=attachment.id %}">Edit</a></button>
+<br><br>
+<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:deleteattachment' pk=attachment.id %}"> Delete</a></button>
+</td>
+
 {% endfor %}
 
 
