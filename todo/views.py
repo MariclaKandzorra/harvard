@@ -3,6 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.urls import reverse, reverse_lazy, Resolver404, resolve, NoReverseMatch
 from django.views import generic
+from django.template.loader import render_to_string
 from django.contrib import messages
 from django.db import migrations, models
 from django.views.generic import (
@@ -14,6 +15,7 @@ from django.views.generic import (
 )
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
+from harvard.sitemaps import StaticSitemap, TaskListViewSitemap, TaskViewSitemap
 
 
 from .models import List, Task, Attachment
@@ -28,7 +30,10 @@ def upload(request):
         file= fss.save(upload.name, upload)
         file_url= fss.url(file)
         return render(request, 'todo/attachments.html', {'file.url': file_url})
-    return render(request, 'todo/attachments.html')
+    return render(request, 'todo/attachments.html')   
+    
+def index(request):
+    return HttpsResponse('todo:index')    
     
 #ADD ONE	
 class TaskListAdd(CreateView):
