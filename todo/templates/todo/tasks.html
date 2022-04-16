@@ -8,7 +8,7 @@
 </div>
 
 <table class="table">
-{% for task in object_task %}    
+{% for task in object_list %}    
 {% if task.completed %} 
 <tr>       
 <td class="text-center"><s><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:task' pk=task.id %}">{{ task.title }} </a></p><p class="fw-light text-justified alert-secondary"><br> Task ID: {{ task.id }} | | Created on: {{ task.created_date }} <br></p></s>

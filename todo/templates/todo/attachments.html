@@ -9,7 +9,7 @@
 <thread class="thread text-center text-md-center fw-bold fs-2">YOUR ATTACHMENTS</thread>
 </div>
 <br>
-{% for attachment in object_attachment %}    
+{% for attachment in object_list %}    
 <tr>   
 <td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border">{{ attachment.file_name }} </a></p><br>
 <p class="fw-light text-justified"> Task ID: {{ attachment.id }}</p>
