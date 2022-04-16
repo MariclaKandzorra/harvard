@@ -16,7 +16,8 @@
     <td>
 <form class="d-flex" method="POST" role="form"> {% csrf_token %}
         <td><br>{{ form.as_p }}</td>
-        <tr><td><br><br><input class="form-control me-2" style="background-color: #FFD700" type="submit" value="Update" /><a href="{% url 'todo:tasks' %}"></a></td></tr>
+        <tr><td><br><br><input class="form-control me-2" style="background-color: #FFD700" type="submit" value="Update" />
+		<a href="{% url 'todo:tasks' %}"></a></td></tr>
         </form>
         </td>   
  </tr>

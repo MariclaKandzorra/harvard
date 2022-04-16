@@ -124,7 +124,7 @@ class AttachmentDetail(DetailView):
 	fields= '__all__'
 	
 	def get_success_url(self): 
-		return reverse('todo:attachment', kwargs={'pk': self.object.pk})
+		return '__all__'
 		
 	def get_context_data(self, **kwargs):
 	    context= super(AttachmentDetail, self).get_context_data(**kwargs)
@@ -141,6 +141,12 @@ class TaskListEdit(UpdateView):
 	
 	def get_success_url(self): 
 		return reverse('todo:tasklist', kwargs={'pk': self.object.pk})
+        
+	def get_context_data(self, **kwargs):
+		context= super(TaskListEdit, self).get_context_data(**kwargs)
+		context['all_objects']= List.objects.all()  
+
+		return context        
 	
 class TaskEdit(UpdateView):
 	model= Task
@@ -150,6 +156,12 @@ class TaskEdit(UpdateView):
 	
 	def get_success_url(self): 
 		return reverse('todo:task', kwargs={'pk': self.object.pk})
+        
+	def get_context_data(self, **kwargs):
+		context= super(TaskEdit, self).get_context_data(**kwargs)
+		context['all_objects']= Tsk.objects.all() 
+
+		return context        
 	
 class AttachmentEdit(UpdateView):
 	model= Attachment
@@ -160,7 +172,11 @@ class AttachmentEdit(UpdateView):
 	def get_success_url(self):
 		return reverse('todo:attachment', kwargs={'pk': self.object.pk})
 		
-
+	def get_context_data(self, **kwargs):
+		context= super(AttachmentEdit, self).get_context_data(**kwargs)
+		context['all_objects']= Attachment.objects.all()
+        
+		return context        
 		
 #Delete each		
 class TaskListDelete(DeleteView):
@@ -172,6 +188,12 @@ class TaskListDelete(DeleteView):
 	
 	def get_absolute_url(self):
 		return reverse_lazy('todo/tasklists')
+        
+	def get_context_data(self, **kwargs):
+		context= super(TaskListDelete, self).get_context_data(**kwargs)
+		context['all_objects']= List.objects.all()    
+        
+		return context
 	
 class TaskDelete(DeleteView):
 	model= Task
@@ -182,18 +204,28 @@ class TaskDelete(DeleteView):
 	
 	def get_absolute_url(self):
 		return reverse_lazy('todo/tasks')
-	
+        
+	def get_context_data(self, **kwargs):
+		context= super(TaskDelete, self).get_context_data(**kwargs)
+		context['all_objects']= Task.objects.all()    
+
+		return context
+        
 class AttachmentDelete(DeleteView):
 	model= Attachment
 	template_name= 'todo/deleteattachment.html'
-	context_object_name= 'edit_attachment'
+	context_object_name= 'delete_attachment'
 	success_url= reverse_lazy('todo:attachments')
 	fields= '__all__'
 	
 	def get_absolute_url(self):
 		return reverse_lazy('todo/attachments')
 
+	def get_context_data(self, **kwargs):
+		context= super(AttachmentDelete, self).get_context_data(**kwargs)
+		context['all_objects']= Attachment.objects.all()
 
+		return context
 
 # Create your views here
 def tasks(request):

@@ -16,12 +16,14 @@
     <td>
 <form class="d-flex" method="POST" role="form"> {% csrf_token %}
         <td><br>{{ form.as_p }}</td>
-        <tr><td><br><br><input class="form-control me-2" style="background-color: #FFD700" type="submit" value="Save" href="{% url 'todo:attachments' %}"></td></tr>
+        <tr><td><br><br>
+		<input class="form-control me-2" style="background-color: #FFD700" type="submit" value="Save" 
+		href="{% url 'todo:attachments' %}"></td></tr>
         </form>
         </td>   
  </tr>
  </tbody>
- </div>
  </table>
+ </div>
  </table>
 {% endblock %}

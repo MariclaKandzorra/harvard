@@ -11,17 +11,15 @@
 <br>
 {% for attachment in object_attachment %}    
 <tr>   
-<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border">{{ attachment.filename }} </a></p><br><p class="fw-light text-justified"> Task ID: {{ attachment.id }}</p>
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border">{{ attachment.file_name }} </a></p><br>
+<p class="fw-light text-justified"> Task ID: {{ attachment.id }}</p>
 </td>
 {% endfor %}
 
-<td>  
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:editattachment' pk=object.id %}">Edit</a></button>
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:deleteattachment' pk=object.id %}"> Delete</a></button>
 
-
-</td>
 </tr>
+
+
 
 </table>
 </div>

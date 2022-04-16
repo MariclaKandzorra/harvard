@@ -13,6 +13,7 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from datetime import datetime, timedelta
 
+
 def get_attachment_upload_dir(instance, filename):
     return "/".join(["tasks", "attachment", str(instance.task.id), filename])
  		    
@@ -47,8 +48,8 @@ class List(models.Model):
     note= models.TextField()
     completed= models.BooleanField(default= False) #checkbox
     # Maps to create_date table column.
-    date= models.DateTimeField(default = datetime.now, blank=True, null= True)
-    
+    date= models.DateTimeField(default=datetime.now, blank=True, null= True)
+    updated_at= models.DateTimeField(auto_now=True, null=True)
     def __str__(self):
     	return self.name + ' | | Completed: ' + str(self.completed) + ' | | ListID: ' + str(self.id) + '| | Assigned to:' + str(self.assigned_to)
     	
@@ -61,6 +62,7 @@ class List(models.Model):
     	verbose_name_plural="Task Lists"
     	unique_together= ("created_by", "slug")
     	unique_together= ("assigned_to", "slug")
+    	
  		
 class Task(models.Model):
     STATUS= [
@@ -92,7 +94,8 @@ class Task(models.Model):
     priority= models.IntegerField(choices= PRIORITY)
     status= models.CharField(max_length= 15, choices=STATUS)
     # Maps to create_date table column.
-    created_date= models.DateTimeField(default = datetime.now, blank=True, null=True)
+    created_date= models.DateTimeField(default=datetime.now, blank=True, null= True)
+    updated_at= models.DateTimeField(auto_now=True, null=True)
     due_date= models.DateField(default=datetime.now()+timedelta(days=15), blank=True, null=True)
     completed= models.BooleanField(default= False) #checkbox
     
@@ -123,12 +126,13 @@ class Task(models.Model):
  	
     class Meta:
         ordering= ["task_list", "title", "due_date", "priority", "status"]
- 		
+       
+        
 class Attachment(models.Model):
     task= models.ForeignKey(Task, on_delete= models.CASCADE, null= True)
     file_name= models.CharField(max_length=900, blank=True, null=True) 
     added_by= models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name="todo_added_by",  on_delete=models.CASCADE,)
-    timestamp= models.DateTimeField(default= datetime.now, blank=True, null=True)
+    timestamp= models.DateTimeField(default=datetime.now, blank=True, null=True)
     note= models.TextField(blank= True, null= True)
     file= models.FileField(upload_to= 'media/', max_length=855)
  		
@@ -137,16 +141,16 @@ class Attachment(models.Model):
         return reverse('attachment', args={"attachment_id": str(self.id)})
  		
     def filename(self):
-        return os.path.basename(str(self.file.name))
+        return os.path.basename(str(self.file_name))
  			
     def extension(self):
         name, extension= os.path.splitext(str(self.file.name))
         return extension
  			
     def __str__(self):
-        return f"{self.task.title} - from: {self.task.task_list.name} - {self.file.name}"
+        return f"{self.task.title} - from: {self.task.task_list.name} - {self.file_name}"
  			
-    def get_attachment_upload_dir(instance, filename):
+    def get_attachment_upload_dir(instance, file_name):
         return "/".join(["tasks", "attachment", str(instance.task.id), file_name])
     
     class Meta:

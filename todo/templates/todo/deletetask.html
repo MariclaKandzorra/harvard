@@ -15,7 +15,7 @@
     <tr>
     <td>
 <form class="d-flex" method="POST" role="form"> {% csrf_token %}
-        <td><br>Are you sure you want to delete "{{ task.title }}"?</td>
+        <td><br>Are you sure you want to delete "{{ object.title }}"?</td>
         <tr><td><br><br><input class="form-control bg-warning me-2" type="submit" value="Confirm" href="{% url 'todo:tasks' %}"></td></tr>
         </form>
         </td>   
