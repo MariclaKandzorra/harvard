@@ -10,56 +10,49 @@
 </div>
 <br><br>   
 
-<div class="container-fluid bg-warning text-center"><s>
-<thread class="thread text-center text-md-center fw-bold fs-2"> {{ object.title }}, Task ID: {{ object.id }} <p class="fw-light text-center fs-5"> Priority: {{ object.priority }} | | Status: {{ object.status }}</p><p> <span class="glyphicon glyphicon-calendar">  Due Date: {{ object.due_date }}</span></p></thread></s><s> Created on: {{ object.date }}</span></p></s></thread></div>
+<div class="container-fluid bg-warning text-center">
+<thread class="thread text-center text-md-center fw-bold fs-2"> <s>{{ object.title }}</s><p> <span class="glyphicon glyphicon-calendar"><s>  Due Date: {{ object.due_date }}</s></span></p><s><p class="fw-light text-center fs-5"> Task ID: {{ object.id }} || Priority: {{ object.priority }} | | Status: {{ object.status }}</p></s><p class="fw-light text-center fs-5"> <span class="glyphicon glyphicon-calendar"><s>Created on: {{ object.created_date }}</s></span></p></thread></div>
 <tr>
-<td><button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:editlist' pk=object.id %}">Restore</a></button>
-</td></tr> 
+<td><ul class="nav justify-content-end"><a href="{% url 'todo:edittask' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary">Restore</button></a>
+</ul></td></tr> 
 {% else %} 
 <div class="container-fluid bg-warning text-center">
 <thread class="thread text-center text-md-center fw-bold fs-2">YOUR TASK</thread>
 </div>
 <br><br>    
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2"> {{ object.title }}, Task ID: {{ object.id }} <p class="fw-light text-center fs-5"> Priority: {{ object.priority }} | | Status: {{ object.status }}</p><p> <span class="glyphicon glyphicon-calendar">  Due Date: {{ object.due_date }}</span></p></thread> Created on: {{ object.date }}</span></p></thread></div>
+<thread class="thread text-center text-md-center fw-bold fs-2"> {{ object.title }}<p> <span class="glyphicon glyphicon-calendar">  Due Date: {{ object.due_date }}</span></p><p class="fw-light text-center fs-5"> Task ID: {{ object.id }} || Priority: {{ object.priority }} | | Status: {{ object.status }}</p><p class="fw-light text-center fs-5"> <span class="glyphicon glyphicon-calendar"> Created on: {{ object.created_date }}</span></p></thread></div>
 <br>
 <div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3">{{ object.note  }}</div>
-<br>
 
-<tr> <td><br>
-
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:tasklists' %}">Show All TasksLists</a></button>
-
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:edittask' pk=object.id %}">Edit</a></button>
-
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:deletetask' pk=object.id %}"> Delete</a></button>
-</td></tr>    
+<tr> <td>
+<ul class="nav justify-content-end">
+<a href="{% url 'todo:edittask' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Edit</button></a>
+<a href="{% url 'todo:deletetask' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px"> Delete</button></a>
+</ul></td></tr>    
     
 {% endif %}
 </table>
 
-<table class="table">
+<table class="table"><br><br>
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2">YOUR TASK</thread>
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="{% url 'todo:tasklists' %}">YOUR TASKS</a></thread>
 </div>
 <br>
 <div class="container-fluid text-center">
 
 {% for object in object.list_set.all %} 
-
-
 <tr>        
-<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=object.id %}">{{ object.title }}</a> </p><br><p class="fw-light text-justified"> | | List ID: {{ object.id }} | | Created on: {{ object.date }}</p></td>   
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=object.id %}">{{ object.title }}</a> </p><br><p class="fw-light text-justified"> | | List ID: {{ object.id }} | | Created on: {{ object.created_date }}</p></td>   
 <td>  
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:edittask' pk=object.id %}">Edit</a></button>
+<a href="{% url 'todo:edittask' pk=object.id %}"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700">Edit</button></a>
 <br><br>
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:deletetask' pk=object.id %}"> Delete</a></button>
+<a href="{% url 'todo:deletetask' pk=object.id %}"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"> Delete</button></a>
 </td>
 </tr>    
 
 {% endfor %}
-</div>
-</tr>    
+</div>   
 </table>
 {% endblock %}
 
