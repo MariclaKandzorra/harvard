@@ -14,7 +14,7 @@
 <br>
 <div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3"><s>{{ object.note  }}</div></s>
 <tr>
-<td><a href="{% url 'todo:editlist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary">Restore</a></button>
+<td><a href="{% url 'todo:editlist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary">Restore</button></a>
 </td></tr> 
 {% else %}    
 <div class="container-fluid bg-warning text-center">
@@ -25,9 +25,9 @@
 
 <tr> <td>
 <ul class="nav justify-content-end">
-<a href="{% url 'todo:tasklists' %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Show All TasksLists</a></button>
-<a href="{% url 'todo:editlist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Edit</a></button>
-<a href="{% url 'todo:deletelist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px"> Delete</a></button>
+<a href="{% url 'todo:tasklists' %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Show All TasksLists</button></a>
+<a href="{% url 'todo:editlist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Edit</button></a>
+<a href="{% url 'todo:deletelist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px"> Delete</button></a>
 </ul></td></tr>      
 {% endif %}
 </table>

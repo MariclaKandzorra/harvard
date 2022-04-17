@@ -17,9 +17,9 @@
 
 <tr> <td><br>
 
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:attachments' %}">Show All TasksLists</a></button>
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:editattachment' pk=object.id %}">Edit</a></button>
-<button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"><a href="{% url 'todo:deleteattachment' pk=object.id %}"> Delete</a></button>
+<a href="{% url 'todo:attachments' %}"><button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px">Show All TasksLists</button></a>
+<a href="{% url 'todo:editattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px">Edit</button></a>
+<a href="{% url 'todo:deleteattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"> Delete</button></a>
 </td></tr>    
     
 
@@ -37,9 +37,9 @@
 <p class="fw-light text-justified"> Attachment ID: {{ object.id }}</p>
 </td>
 <td>  
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:editattachment' pk=object.id %}">Edit</a></button>
+<a href="{% url 'todo:editattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700">Edit</button></a>
 <br><br>
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:deleteattachment' pk=object.id %}"> Delete</a></button>
+<a href="{% url 'todo:deleteattachment' pk=object.id %}"> <button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700">Delete</button></a>
 </td>
 {% endfor %}
 </tr>
