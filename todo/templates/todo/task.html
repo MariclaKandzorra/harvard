@@ -36,14 +36,14 @@
 
 <table class="table"><br><br>
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2"><a href="{% url 'todo:tasklists' %}">YOUR TASKS</a></thread>
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="{% url 'todo:tasks' %}">YOUR TASKS</a></thread>
 </div>
 <br>
 <div class="container-fluid text-center">
 
 {% for object in object.list_set.all %} 
 <tr>        
-<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=object.id %}">{{ object.title }}</a> </p><br><p class="fw-light text-justified"> | | List ID: {{ object.id }} | | Created on: {{ object.created_date }}</p></td>   
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:task' pk=object.id %}">{{ object.title }}</a> </p><br><p class="fw-light text-justified"> | | List ID: {{ object.id }} | | Created on: {{ object.created_date }}</p></td>   
 <td>  
 <a href="{% url 'todo:edittask' pk=object.id %}"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700">Edit</button></a>
 <br><br>
