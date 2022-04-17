@@ -11,7 +11,7 @@
 <br><br>   
 
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2"> <s>{{ object.title }}</s><p> <span class="glyphicon glyphicon-calendar"><s>  Due Date: {{ object.due_date }}</s></span></p><s><p class="fw-light text-center fs-5"> Task ID: {{ object.id }} || Priority: {{ object.priority }} | | Status: {{ object.status }} || Assigned to: {{ object.assigned_to }}</p></s><p class="fw-light text-center fs-5"> <span class="glyphicon glyphicon-calendar"><s>Created on: {{ object.created_date }}</s></span></p></thread></div>
+<thread class="thread text-center text-md-center fw-bold fs-2"> <a href="#"><s>{{ object.title }}</s></a><p> <span class="glyphicon glyphicon-calendar"><s>  Due Date: {{ object.due_date }}</s></span></p><s><p class="fw-light text-center fs-5"> Task ID: {{ object.id }} || Priority: {{ object.priority }} | | Status: {{ object.status }} || Assigned to: {{ object.assigned_to }}</p></s><p class="fw-light text-center fs-5"> <span class="glyphicon glyphicon-calendar"><s>Created on: {{ object.created_date }}</s></span></p></thread></div>
 <tr>
 <td><ul class="nav justify-content-end"><a href="{% url 'todo:edittask' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary">Restore</button></a>
 </ul></td></tr> 
@@ -21,7 +21,7 @@
 </div>
 <br><br>    
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2">{{ object.title }}<p> <span class="glyphicon glyphicon-calendar">Due Date: {{ object.due_date }}</span></p><p class="fw-light text-center fs-5"> Task ID: {{ object.id }} || Priority: {{ object.priority }} | | Status: {{ object.status }} <p class="fw-light text-center fs-5">Assigned to: {{ object.assigned_to }}</p><p class="fw-light text-center fs-5"> <span class="glyphicon glyphicon-calendar">Created on: {{ object.created_date }}</span></p></thread></div>
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="#">{{ object.title }}</a><p> <span class="glyphicon glyphicon-calendar">Due Date: {{ object.due_date }}</span></p><p class="fw-light text-center fs-5"> Task ID: {{ object.id }} || Priority: {{ object.priority }} | | Status: {{ object.status }} <p class="fw-light text-center fs-5">Assigned to: {{ object.assigned_to }}</p><p class="fw-light text-center fs-5"> <span class="glyphicon glyphicon-calendar">Created on: {{ object.created_date }}</span></p></thread></div>
 <br>
 <div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3">{{ object.note  }}</div>
 
