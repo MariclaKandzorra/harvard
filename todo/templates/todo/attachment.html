@@ -31,7 +31,7 @@
 <thread class="thread text-center text-md-center fw-bold fs-2">YOUR ATTACHMENTS</thread>
 </div>
 <br>
-{% for attachment in object_list %}    
+{% for attachment in object.list_set.all %} 
 <tr>  
 <td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:attachment' pk=attachment.id %}">{{ object.file_name }} </a></p><p class="fw-light text-justified alert-secondary"><br> From Task: {{ object.task }} | | Created on: {{ object.timestamp }}<br></p>
 <p class="fw-light text-justified"> Attachment ID: {{ object.id }}</p>
