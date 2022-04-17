@@ -4,37 +4,40 @@
 
 {% block content %}
 <table class="table">
+{% if object.completed %} 
+<div class="container-fluid bg-warning text-center">
+<thread class="thread text-center text-md-center fw-bold fs-2" style="color: #40ff00">MISSION ACCOMPLISHED</thread>
+</div>
+<br><br>   
+
+<div class="container-fluid bg-warning text-center"><s>
+<thread class="thread text-center text-md-center fw-bold fs-2">{{ object.name }} <br><p class="fw-light text-center fs-5">List ID: {{ object.id }}</s></p><p><span class="glyphicon glyphicon-calendar"><s> Created on: {{ object.date }}</s></span></p></thread></div>
+<br>
+<div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3"><s>{{ object.note  }}</s></div>
+<tr><td>
+<ul class="nav justify-content-end"><a href="{% url 'todo:editlist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary">Restore</button></a>
+</ul></td></tr> 
+{% else %} 
 <div class="container-fluid bg-warning text-center">
 <thread class="thread text-center text-md-center fw-bold fs-2">YOUR TASK LIST</thread>
 </div>
-<br><br>   
-{% if object.completed %} 
-<div class="container-fluid bg-warning text-center"><s>
-<thread class="thread text-center text-md-center fw-bold fs-2">{{ object.name }} <br><p class="fw-light text-center fs-5">List ID: {{ object.id }} ||<span class="glyphicon glyphicon-calendar"></s><s> Created on: {{ object.date }}</span></p></s></thread></div>
-<br>
-<div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3"><s>{{ object.note  }}</div></s>
-<tr>
-<td><a href="{% url 'todo:editlist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary">Restore</button></a>
-</td></tr> 
-{% else %}    
+<br><br>    
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2">{{ object.name }} <br><p class="fw-light text-center fs-5">List ID: {{ object.id }} || <span class="glyphicon glyphicon-calendar"> Created on: {{ object.date }}</span></p></thread></div>
+<thread class="thread text-center text-md-center fw-bold fs-2">{{ object.name }} <br><p class="fw-light text-center fs-5">List ID: {{ object.id }}</p><p><span class="glyphicon glyphicon-calendar"> Created on: {{ object.date }}</span></p></thread></div>
 <br>
 <div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3">{{ object.note  }}</div>
-<br>
 
 <tr> <td>
 <ul class="nav justify-content-end">
-<a href="{% url 'todo:tasklists' %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Show All TasksLists</button></a>
 <a href="{% url 'todo:editlist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Edit</button></a>
 <a href="{% url 'todo:deletelist' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px"> Delete</button></a>
 </ul></td></tr>      
 {% endif %}
 </table>
 
-<table class="table">
+<table class="table"><br><br>
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2">YOUR LISTS</thread>
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="{% url 'todo:tasklists' %}">YOUR LISTS</thread>
 </div>
 <br>
 <div class="container-fluid text-center">
@@ -45,9 +48,9 @@
 <tr>        
 <td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=object.id %}">{{ object.name }}</a> </p><br><p class="fw-light text-justified"> | | List ID: {{ object.id }} | | Created on: {{ object.date }}</p></td>   
 <td>  
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:edittasklist' pk=object.id %}">Edit</a></button>
+<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:editlist' pk=object.id %}">Edit</a></button>
 <br><br>
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:deletetasklist' pk=object.id %}"> Delete</a></button>
+<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:deletelist' pk=object.id %}"> Delete</a></button>
 </td>
 </tr>    
 
