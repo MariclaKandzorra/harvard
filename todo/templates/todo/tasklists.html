@@ -11,27 +11,22 @@
 {% for list in object_list %}    
 {% if list.completed %} 
 <tr>       
-<td class="text-center"><s><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=list.id %}">{{ list.name }} </a></p><p class="fw-light text-justified alert-secondary"><br> Task ID: {{ list.id }} | | Created on: {{ list.date }} <br></p></s>
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=list.id %}">{{ list.name }} </a></p><p class="fw-light text-justified alert-secondary"><br>Created on: {{ list.date }} <br></p></s>
+<p class="fw-light text-justified">List ID: {{ list.id }}</p>
 </td>
-<tr>
-<td>  <ul class="nav justify-content-end">
-<li class="nav-item"><button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:editlist' pk=object.id %}">Restore</a></button></li></ul>
-</td></tr> 
-</tr>    
+<td>  
+<button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:editlist' pk=list.id %}">Restore</a></button>
+</tr>  
 {% else %}    
 
 <tr>    
-<td class="text-center">
-<ul class="nav justify-content-end">
-<li class="nav-item"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=list.id %}">{{ list.name }} </a></p><p class="fw-light text-justified alert-secondary"><br> Task ID: {{ list.id }} | | Created on: {{ list.date }}<br></p></li>
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:tasklist' pk=list.id %}">{{ list.name }} </a></p><p class="fw-light text-justified alert-secondary"><br>Created on: {{ list.date }}<br></p></li>
+<p class="fw-light text-justified">List ID: {{ list.id }}</p>
 </td>
 <td>  
-<ul class="nav justify-content-end">
-<li class="nav-item">
-<button type="submit" name="button" class="btn bg-warning btn-info text-white"><a href="{% url 'todo:editlist' pk=list.id %}">Edit</a></button></li>
+<button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:editlist' pk=list.id %}">Edit</a></button>
 <br><br>
-<li class="nav-item">
-<button type="submit" name="button" class="btn bg-warning btn-info text-white"><a href="{% url 'todo:deletelist' pk=list.id %}"> Delete</a></button></li>
+<button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:deletelist' pk=list.id %}"> Delete</a></button>
 </td>
 </tr>    
 {% endif %}

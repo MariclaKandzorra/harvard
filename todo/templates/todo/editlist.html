@@ -1,13 +1,13 @@
 {% extends 'todo/base.html' %}
 
-<title>{% block title %}Update LISTS{% endblock %}</title>
+<title>{% block title %}Update Tasks{% endblock %}</title>
 
 
 {% block content %}
 
 <br><br>
 <table class="table">
-<tr><td><div class="container-fluid text-center" style="background-color: #FFD700">
+<tr><td><div class="container-fluid text-center bg-warning">
 <thread class="thread text-center text-md-center fw-bold fs-2">UPDATE YOUR TASK LIST</thread></td></tr>
 
 <table class="table">
@@ -16,8 +16,8 @@
     <td>
 <form class="d-flex" method="POST" role="form"> {% csrf_token %}
         <td><br>{{ form.as_p }}</td>
-        <tr><td><br><br><input class="form-control me-2" style="background-color: #FFD700" type="submit" value="Update" />
-		<a href="{% url 'todo:tasks' %}"></a></td></tr>
+        <tr><td><br><br><input class="form-control btn-info bg-warning text-primary me-2" type="submit" value="Save" 
+		href="{% url 'todo:tasklists' %}"></td></tr>
         </form>
         </td>   
  </tr>

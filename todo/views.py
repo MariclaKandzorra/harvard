@@ -172,7 +172,7 @@ class TaskEdit(UpdateView):
         
 	def get_context_data(self, **kwargs):
 		context= super(TaskEdit, self).get_context_data(**kwargs)
-		context['all_objects']= Tsk.objects.all() 
+		context['all_objects']= Task.objects.all() 
 
 		return context        
 	

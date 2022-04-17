@@ -11,7 +11,8 @@
 {% for task in object_list %}    
 {% if task.completed %} 
 <tr>       
-<td class="text-center"><s><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:task' pk=task.id %}">{{ task.title }} </a></p><p class="fw-light text-justified alert-secondary"><br> Task ID: {{ task.id }} | | Created on: {{ task.created_date }} <br></p></s>
+<td class="text-center"><s><p class="text-md-center fw-bold fs-2 bg-light border"><a style="color: #40ff00" href="{% url 'todo:task' pk=task.id %}">{{ task.title }} </a></p><p class="fw-light text-justified alert-secondary"><br>From List: {{ task.task_list }} | | Created on: {{ task.created_date }} <br></p></s>
+<p class="fw-light text-justified">Task ID: {{ task.id }}</p></s>
 </td>
 <td>  
 <button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:edittask' pk=task.id %}">Restore</a></button>
@@ -19,12 +20,13 @@
 {% else %}    
 
 <tr>    
-<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:task' pk=task.id %}">{{ task.title }} </a></p><p class="fw-light text-justified alert-secondary"><br> Task ID: {{ task.id }} | | Created on: {{ task.created_date }}<br></p>
+<td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:task' pk=task.id %}">{{ task.title }} </a></p><p class="fw-light text-justified alert-secondary"><br> From List: {{ task.task_list }} | | Created on: {{ task.created_date }}<br></p>
+<p class="fw-light text-justified">Task ID: {{ task.id }}</p>
 </td>
 <td>  
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:edittask' pk=task.id %}">Edit</a></button>
+<button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:edittask' pk=task.id %}">Edit</a></button>
 <br><br>
-<button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700"><a href="{% url 'todo:deletetask' pk=task.id %}"> Delete</a></button>
+<button type="submit" name="button" class="btn btn-info bg-warning text-white"><a href="{% url 'todo:deletetask' pk=task.id %}"> Delete</a></button>
 </td>
 </tr>    
 {% endif %}
