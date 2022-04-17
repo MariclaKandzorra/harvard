@@ -9,26 +9,21 @@
 </div>
 <br><br>    
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2"> {{ object.file }}<p class="fw-light text-center fs-5"> From Task: {{ object.task }}</p><p> <span class="glyphicon glyphicon-calendar">Uploaded on: {{ object.timestamp }}</span>
-</p><p class="fw-light text-justified">Task ID: {{ object.id }}</p></thread></div>
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="#"> {{ object.file }} </a><br><p> From Task: {{ object.task }} </p><p>Added by: {{ object.added_by }}</p><p class="fw-light text-center fs-5"><span class="glyphicon glyphicon-calendar">Uploaded on: {{ object.timestamp }}</span>
+</p><p class="fw-light text-center fs-5">Task ID: {{ object.id }}</p></thread></div>
 <br>
 <div class="container-fluid alert alert-secondary fw-bold fs-5" role="alert" rows="3">{{ object.note  }}</div>
-<br>
 
-<tr> <td><br>
-
-<a href="{% url 'todo:attachments' %}"><button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px">Show All TasksLists</button></a>
-<a href="{% url 'todo:editattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px">Edit</button></a>
-<a href="{% url 'todo:deleteattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-white" style="margin-right: 10px"> Delete</button></a>
-</td></tr>    
-    
-
+<tr> <td><ul class="nav justify-content-end">
+<a href="{% url 'todo:editattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px">Edit</button></a>
+<a href="{% url 'todo:deleteattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info bg-warning text-primary" style="margin-right: 10px"> Delete</button></a>
+</ul></td></tr>    
 </table>
-<td><br>   
 
-<table class="table">
+
+<table class="table"><br><br>
 <div class="container-fluid bg-warning text-center">
-<thread class="thread text-center text-md-center fw-bold fs-2">YOUR ATTACHMENTS</thread>
+<thread class="thread text-center text-md-center fw-bold fs-2"><a href="{% url 'todo:attachments' %}">YOUR ATTACHMENTS</a></thread>
 </div>
 <br>
 {% for attachment in object.list_set.all %} 
@@ -36,11 +31,12 @@
 <td class="text-center"><p class="text-md-center fw-bold fs-2 bg-light border"><a href="{% url 'todo:attachment' pk=attachment.id %}">{{ object.file_name }} </a></p><p class="fw-light text-justified alert-secondary"><br> From Task: {{ object.task }} | | Created on: {{ object.timestamp }}<br></p>
 <p class="fw-light text-justified"> Attachment ID: {{ object.id }}</p>
 </td>
-<td>  
-<a href="{% url 'todo:editattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700">Edit</button></a>
-<br><br>
-<a href="{% url 'todo:deleteattachment' pk=object.id %}"> <button type="submit" name="button" class="btn btn-info text-white" style="background-color: #FFD700">Delete</button></a>
-</td>
+<tr><td>
+<ul class="nav justify-content-end">  
+<a href="{% url 'todo:editattachment' pk=object.id %}"><button type="submit" name="button" class="btn btn-info text-primary" style="background-color: #FFD700">Edit</button></a>
+
+<a href="{% url 'todo:deleteattachment' pk=object.id %}"> <button type="submit" name="button" class="btn btn-info text-primary" style="background-color: #FFD700">Delete</button></a>
+</ul></tr></td>
 {% endfor %}
 </tr>
 </table>

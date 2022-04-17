@@ -50,8 +50,9 @@ class List(models.Model):
     # Maps to create_date table column.
     date= models.DateTimeField(default=datetime.now, blank=True, null= True)
     updated_at= models.DateTimeField(auto_now=True, null=True)
+    
     def __str__(self):
-    	return self.name + ' | | Completed: ' + str(self.completed) + ' | | ListID: ' + str(self.id) + '| | Assigned to:' + str(self.assigned_to)
+    	return self.name + ' | | List-ID: ' + str(self.id) 
     	
     def get_absolute_url(self):
     	self.model.__name__
